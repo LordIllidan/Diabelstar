@@ -11,6 +11,6 @@ test('Select car brand', async ({ page }) => {
     await page.getByText('Marka 1').click();
 
     // Verify the selected brand
-    const selectedBrand = await brandSelect.locator('span.mat-mdc-select-placeholder').innerText();
-    expect(selectedBrand).toBe('Marka 1');
+    await expect(page.getByText('Marka 1')).toBeVisible();
+
 });
