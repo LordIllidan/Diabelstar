@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('calculate insurance', async ({ page }) => {
-    await page.goto('http://your-url-here');
+    await page.goto('https://fake-calculator-byc0fmbgehc4fjeh.polandcentral-01.azurewebsites.net/ssr');
 
     // Fill in the form
     await page.selectOption('#brand', 'YourCarBrand');
