@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Car Price Calculation Form', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://your-angular-app-url'); // Replace with your app URL
+        await page.goto('https://fake-calculator-byc0fmbgehc4fjeh.polandcentral-01.azurewebsites.net/ssr'); // Replace with your app URL
     });
 
     test('should fill in the car details and submit the form', async ({ page }) => {
