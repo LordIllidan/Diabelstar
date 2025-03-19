@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('should calculate OC/AC correctly', async () => {
-    const page = await browser.newPage();
+test('should calculate OC/AC correctly', async ({ page }) => {
     await page.goto('https://fake-calculator-byc0fmbgehc4fjeh.polandcentral-01.azurewebsites.net/ssr');
 
     await page.select('#brand', 'Toyota');
