@@ -1,3 +1,5 @@
+import { test, expect } from '@playwright/test';
+
 test('should calculate OC/AC correctly', async () => {
     const page = await browser.newPage();
     await page.goto('http://localhost:3000');
