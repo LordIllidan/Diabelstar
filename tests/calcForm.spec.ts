@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Calculator Form', () => {
     test('should submit the form and display the result', async ({ page }) => {
-        await page.goto('http://localhost:3000');
+        await page.goto('https://fake-calculator-byc0fmbgehc4fjeh.polandcentral-01.azurewebsites.net/ssr');
 
         await page.selectOption('#brand', 'Toyota');
         await page.selectOption('#model', 'Corolla');
