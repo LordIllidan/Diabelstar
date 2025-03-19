@@ -1,20 +1,19 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Car Price Calculation Form', () => {
-    test.beforeEach(async ({ page }) => {
-        await page.goto('https://fake-calculator-byc0fmbgehc4fjeh.polandcentral-01.azurewebsites.net/ssr'); // Replace with your app URL
-    });
-
-    test('should fill in the car details and submit the form', async ({ page }) => {
-        await page.selectOption('#brand mat-select', 'Toyota'); // Example brand
-        await page.selectOption('#model mat-select', 'Corolla'); // Example model
-        await page.fill('#zip-code input', '12345');
-        await page.fill('#owner-first-name input', 'John');
-        await page.fill('#owner-second-name input', 'Doe');
-
-        await page.click('#show-price-button');
-
-        // Add assertions here to verify the expected outcome after form submission
-        // Example: expect(await page.locator('.result')).toHaveText('Expected Result');
-    });
+test('test', async ({ page }) => {
+  await page.goto('https://fake-calculator-byc0fmbgehc4fjeh.polandcentral-01.azurewebsites.net/ssr');
+  await page.locator('div').filter({ hasText: 'Marka auta' }).nth(3).click();
+  await page.getByRole('option', { name: 'Marka 1' }).click();
+  await page.getByRole('combobox', { name: 'Model' }).locator('span').click();
+  await page.getByText('Model 1').click();
+  await page.getByText('Kod pocztowy').click();
+  await page.getByRole('textbox', { name: 'Kod pocztowy' }).click();
+  await page.getByRole('textbox', { name: 'Kod pocztowy' }).click();
+  await page.getByRole('textbox', { name: 'Kod pocztowy' }).fill('00-000_');
+  await page.getByText('Imię właściciela').click();
+  await page.getByRole('textbox', { name: 'Imię właściciela' }).fill('Ala');
+  await page.locator('div').filter({ hasText: 'Nazwisko właściciela' }).nth(3).click();
+  await page.getByRole('textbox', { name: 'Nazwisko właściciela' }).fill('Test');
+  await page.getByRole('button', { name: 'Wylicz' }).click();
+  await expect(page.getByText('Twoja składka OC na auto')).toBeVisible();
 });
