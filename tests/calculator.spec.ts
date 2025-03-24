@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+
+test('Calculate insurance premium', async ({ page }) => {
+  await page.goto('https://fake-calculator-byc0fmbgehc4fjeh.polandcentral-01.azurewebsites.net/ssr');
+  await page.getByRole('combobox', { name: 'Marka auta' }).locator('span').click();
+  await page.locator('div').filter({ hasText: 'Marka auta' }).nth(3).click();
+  await page.locator('.cdk-overlay-backdrop').click();
+  await page.getByRole('textbox', { name: 'Kod pocztowy' }).fill('23-123');
+  await page.getByText('Imię właściciela').click();
+  await page.getByRole('textbox', { name: 'Imię właściciela' }).fill('Jan');
+  await page.getByRole('textbox', { name: 'Nazwisko właściciela' }).click();
+  await page.getByRole('textbox', { name: 'Nazwisko właściciela' }).fill('Kowalski');
+  await page.getByRole('button', { name: 'Wylicz' }).click();
+  await expect(page.getByRole('textbox', { name: 'Kod pocztowy' })).toHaveValue('23-123');
+  await page.getByRole('textbox', { name: 'Imię właściciela' }).click();
+  await page.getByRole('textbox', { name: 'Nazwisko właściciela' }).click();
+  await expect(page.getByText('Marka autaMarka')).toBeVisible();
+  await page.getByText('Model 3').click();
+  await page.locator('.cdk-overlay-backdrop').click();
+  await expect(page.locator('#option-model-3')).toContainText('Model 3');
+  await expect(page.locator('#option-model-1')).toMatchAriaSnapshot(`- option "Model 1"`);
+  await page.getByText('Model 2').click();
+  await page.getByRole('textbox', { name: 'Imię właściciela' }).click();
+  await page.getByRole('textbox', { name: 'Nazwisko właściciela' }).click();
+  await page.getByRole('textbox', { name: 'Kod pocztowy' }).click();
+  await page.locator('#mat-select-value-1').click();
+  await page.locator('.cdk-overlay-backdrop').click();
+  await page.getByRole('combobox', { name: 'Marka auta Marka' }).locator('svg').click();
+  await page.getByRole('option', { name: 'Marka 1' }).click();
+  await page.getByRole('combobox', { name: 'Model Model' }).locator('path').click();
+  await page.getByRole('option', { name: 'Model 3' }).click();
+});
